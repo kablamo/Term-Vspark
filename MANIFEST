@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Term-Vspark.t
+lib/Term/Vspark.pm

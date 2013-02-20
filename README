@@ -1,4 +1,4 @@
-Term-Vspark version 0.02
+Term-Vspark version 0.03
 ========================
 
 The README is used to introduce the module and provide instructions on
@@ -20,12 +20,6 @@ To install this module type the following:
    make
    make test
    make install
-
-DEPENDENCIES
-
-This module requires these other modules and libraries:
-
-    Term::Size
 
 COPYRIGHT AND LICENCE
 

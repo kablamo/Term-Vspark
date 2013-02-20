@@ -3,21 +3,22 @@ package Term::Vspark;
 use 5.016002;
 use strict;
 use warnings;
+use POSIX;
 
 our @ISA = qw();
 
-our $VERSION = '0.03';
+our $VERSION = '0.05';
 
 sub show_single_bar {
     my $num     = shift;
     my $max     = shift;
     my $columns = shift;
 
-    my @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █};
-    my $bar_num = ( $num * ( scalar(@graph) * $columns ) ) / $max;
+    my @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
+    my $bar_num = ceil( $num * ( scalar(@graph) * $columns ) ) / $max;
 
-    my $str = $graph[-1] x ( int($bar_num / scalar(@graph) ) - 1 );
-    $str   .= $graph[ int($bar_num % (scalar(@graph) - 1) ) ];
+    my $str = $graph[-1] x ( int($bar_num / scalar(@graph) ) );
+    $str   .= $graph[ ceil($bar_num % (scalar(@graph) ) ) ];
 
     return $str;
 }
@@ -31,7 +32,7 @@ sub show_graph {
 
     my $str = q{};
     for my $i ( @values ) {
-        $str .= printf( "%s\n", show_single_bar($i, $max, $columns) );
+        $str .= printf( "%5d %s\n", $i, show_single_bar($i, $max, $columns) );
     }
 
     return $str;

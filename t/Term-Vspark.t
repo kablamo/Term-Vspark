@@ -12,13 +12,13 @@ use Test::More tests => 1;
 
 BEGIN { use_ok('Term::Vspark') };
 
-chomp( @ARGV = <STDIN> ) unless @ARGV;
-
-my @list = sort { $a <=> $b } @ARGV;
- my $columns = qx{tput cols};
-
-Term::Vspark::show_graph(
-    'max'     => $list[-1],
-    'columns' => $columns,
-    'values'  => \@ARGV,
-);
+#chomp( @ARGV = <STDIN> ) unless @ARGV;
+#
+#my @list = sort { $a <=> $b } @ARGV;
+#my $columns = qx{tput cols};
+#
+#Term::Vspark::show_graph(
+#    'max'     => $list[-1],
+#    'columns' => 10, #$columns - 1,
+#    'values'  => \@ARGV,
+#);

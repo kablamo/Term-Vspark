@@ -7,21 +7,19 @@
 
 use strict;
 use warnings;
-use Term::Vspark;
+#use Term::Size;
 
 use Test::More tests => 1;
+
 BEGIN { use_ok('Term::Vspark') };
 
 #chomp( @ARGV = <STDIN> ) unless @ARGV;
 #
 #my @list = sort { $a <=> $b } @ARGV;
+#my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
 #
-#for my $i ( @ARGV ) {
-#    printf( "%s\n", Term::Vspark::show($i, $list[-1]) );
-#}
-
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
-
+#Term::Vspark::show_graph(
+#    'max'     => $list[-1],
+#    'columns' => $columns,
+#    'values'  => \@ARGV,
+#);

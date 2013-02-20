@@ -4,23 +4,35 @@ use 5.016002;
 use strict;
 use warnings;
 
-use Term::Size;
-
 our @ISA = qw();
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
-sub show {
-    my $num = shift;
-    my $max = shift;
-
-    my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
+sub show_single_bar {
+    my $num     = shift;
+    my $max     = shift;
+    my $columns = shift;
 
     my @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █};
     my $bar_num = ( $num * ( scalar(@graph) * $columns ) ) / $max;
 
-    my $str = $graph[-1] x int($bar_num / scalar(@graph) );
+    my $str = $graph[-1] x ( int($bar_num / scalar(@graph) ) - 1 );
     $str   .= $graph[ int($bar_num % (scalar(@graph) - 1) ) ];
+
+    return $str;
+}
+
+# Helper method
+sub show_graph {
+    my %args    = @_;
+    my $max     = $args{'max'};
+    my $columns = $args{'columns'};
+    my @values  = @{ $args{'values'} };
+
+    my $str = q{};
+    for my $i ( @values ) {
+        $str .= printf( "%s\n", show_single_bar($i, $max, $columns) );
+    }
 
     return $str;
 }
@@ -35,12 +47,53 @@ Term::Vspark - Perl extension for dispaying bars in the terminal
 
 =head1 SYNOPSIS
 
-  use Term::Vspark;
-
-  print Term::Vspark::show();
+Displays beautiful graphs to use in the terminal
 
 =head1 DESCRIPTION
 
+=head2 Methods
+
+Returns a string with a single utf8 bar according to the values
+
+    Term::Vspark::show_single_bar($value_for_this_bar, $max_value, $number_of_columns_to_display);
+
+Returns a string with a various utf8 bars according to the values
+
+    Term::Vspark::show_graph('values' => \@values_for_this_graph, 'max' => $max_value, 'columns' => $number_of_columns_to_display);
+
+displays stuff like this:
+
+    ██████████████████████████████████████████████▊
+    █████████████████████████████████▌
+    ███████████████████████████████████████▋
+    ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊
+    █████████████████████████████████
+    ████████████████████████████████████████████████████████████████████████████████▍
+    ██▋
+    ████████████████████████████████
+    ████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎
+    ████████████████████████████████████████████████████████████████▍
+    █████████████████
+    ██▋
+
+
+Example:
+
+    use Term::Vspark;
+    use Term::Size;
+
+    chomp( @ARGV = <STDIN> ) unless @ARGV;
+
+    my @list = sort { $a <=> $b } @ARGV;
+    my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
+
+    Term::Vspark::show_graph(
+        'max'     => $list[-1],
+        'columns' => $columns,
+        'values'  => \@ARGV,
+    );
+
+This will receive numbers from ARGV or STDIN and print out beutiful graph based on that data.
 
 =head1 SEE ALSO
 

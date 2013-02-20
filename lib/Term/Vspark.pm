@@ -8,7 +8,7 @@ use Term::Size;
 
 our @ISA = qw();
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub show {
     my $num = shift;
@@ -16,9 +16,13 @@ sub show {
 
     my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
 
-    my $bar = q{█};
+    my @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █};
+    my $bar_num = ( $num * ( scalar(@graph) * $columns ) ) / $max;
 
-    return $bar x ( ($num * $columns) / $max );
+    my $str = $graph[-1] x int($bar_num / scalar(@graph) );
+    $str   .= $graph[ int($bar_num % (scalar(@graph) - 1) ) ];
+
+    return $str;
 }
 
 1;

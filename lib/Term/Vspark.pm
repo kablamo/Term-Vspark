@@ -1,13 +1,12 @@
 package Term::Vspark;
 
-use 5.016002;
 use strict;
 use warnings;
 use POSIX;
 
 our @ISA = qw();
 
-our $VERSION = '0.06';
+# VERSION
 
 sub show_single_bar {
     my $num     = shift;

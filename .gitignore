@@ -1,4 +1,4 @@
-*.tar.gz
+Term-Vspark-*
 blib/
 Makefile
 MYMETA*

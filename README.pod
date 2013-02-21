@@ -1,49 +1,10 @@
-package Term::Vspark;
+=pod
 
-use strict;
-use warnings;
-use POSIX;
-
-our @ISA = qw();
-
-# VERSION
-
-sub show_single_bar {
-    my $num     = shift;
-    my $max     = shift;
-    my $columns = shift;
-
-    my @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
-    my $bar_num = ceil( $num * ( scalar(@graph) * $columns ) ) / $max;
-
-    my $str = $graph[-1] x ( int($bar_num / scalar(@graph) ) );
-    $str   .= $graph[ ceil($bar_num % (scalar(@graph) ) ) ];
-
-    return $str;
-}
-
-# Helper method
-sub show_graph {
-    my %args    = @_;
-    my $max     = $args{'max'};
-    my $columns = $args{'columns'};
-    my @values  = @{ $args{'values'} };
-
-    my $str = q{};
-    for my $i ( @values ) {
-        $str .= printf( "%s\n", show_single_bar($i, $max, $columns) );
-    }
-
-    return $str;
-}
-
-1;
-__END__
 =encoding utf-8
 
 =head1 NAME
 
-Term::Vspark - Perl extension for dispaying bars in the terminal
+Term::Vspark
 
 =head1 SYNOPSIS
 
@@ -79,13 +40,17 @@ Example:
 
 This will receive numbers from ARGV or STDIN and print out beutiful graph based on that data.
 
+=head1 NAME
+
+Term::Vspark - Perl extension for dispaying bars in the terminal
+
 =head1 SEE ALSO
 
 Original repo: https://github.com/LuRsT/vspark
 
 =head1 AUTHOR
 
-Gil Gonçalves <lurst@cpan.org>
+Gil Gonçalves <lt>lurst@gmail.com<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
@@ -95,4 +60,14 @@ This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.16.2 or,
 at your option, any later version of Perl 5 you may have available.
 
-=cut
+=head1 AUTHOR
+
+Gil Gonçalves <lurst at gmail dot com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Gil Gonçalves.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+

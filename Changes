@@ -1,4 +1,8 @@
+
 Revision history for Perl extension Term::Vspark.
+
+0.02 Thu Feb 21 08:47:47 GMT 2013
+    - switched to Dist::Zilla
 
 0.01  Tue Feb 19 14:21:30 2013
 	- original version; created by h2xs 1.23 with options

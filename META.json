@@ -41,7 +41,7 @@
       "runtime" : {
          "requires" : {
             "POSIX" : "0",
-            "perl" : "5.016002",
+            "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -60,7 +60,7 @@
    "provides" : {
       "Term::Vspark" : {
          "file" : "lib/Term/Vspark.pm",
-         "version" : "0.001"
+         "version" : "0.02"
       }
    },
    "release_status" : "stable",
@@ -75,6 +75,6 @@
          "web" : "https://github.com/LuRsT/term-vspark"
       }
    },
-   "version" : "0.001"
+   "version" : "0.02"
 }
 

@@ -40,7 +40,7 @@ sub show_graph {
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+=encoding utf-8
 
 =head1 NAME
 
@@ -86,7 +86,7 @@ Original repo: https://github.com/LuRsT/vspark
 
 =head1 AUTHOR
 
-Gil Gonçalves <lt>lurst@gmail.com<gt>
+Gil Gonçalves <lurst@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -19,6 +19,6 @@ BEGIN { use_ok('Term::Vspark') };
 #
 #Term::Vspark::show_graph(
 #    'max'     => $list[-1],
-#    'columns' => 10, #$columns - 1,
+#    'columns' => $columns - 1,
 #    'values'  => \@ARGV,
 #);

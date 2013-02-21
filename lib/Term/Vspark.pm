@@ -7,7 +7,7 @@ use POSIX;
 
 our @ISA = qw();
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 sub show_single_bar {
     my $num     = shift;
@@ -32,7 +32,7 @@ sub show_graph {
 
     my $str = q{};
     for my $i ( @values ) {
-        $str .= printf( "%5d %s\n", $i, show_single_bar($i, $max, $columns) );
+        $str .= printf( "%s\n", show_single_bar($i, $max, $columns) );
     }
 
     return $str;
@@ -61,22 +61,6 @@ Returns a string with a single utf8 bar according to the values
 Returns a string with a various utf8 bars according to the values
 
     Term::Vspark::show_graph('values' => \@values_for_this_graph, 'max' => $max_value, 'columns' => $number_of_columns_to_display);
-
-displays stuff like this:
-
-    ██████████████████████████████████████████████▊
-    █████████████████████████████████▌
-    ███████████████████████████████████████▋
-    ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊
-    █████████████████████████████████
-    ████████████████████████████████████████████████████████████████████████████████▍
-    ██▋
-    ████████████████████████████████
-    ████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎
-    ████████████████████████████████████████████████████████████████▍
-    █████████████████
-    ██▋
-
 
 Example:
 

@@ -4,7 +4,7 @@
       "Gil Gon\u00c3\u00a7alves <lurst at gmail dot com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300029, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 4.300030, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -60,7 +60,7 @@
    "provides" : {
       "Term::Vspark" : {
          "file" : "lib/Term/Vspark.pm",
-         "version" : "0.02"
+         "version" : "0.08"
       }
    },
    "release_status" : "stable",
@@ -75,6 +75,6 @@
          "web" : "https://github.com/LuRsT/term-vspark"
       }
    },
-   "version" : "0.02"
+   "version" : "0.08"
 }
 

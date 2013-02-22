@@ -1,7 +1,5 @@
 =pod
 
-=encoding utf-8
-
 =head1 NAME
 
 Term::Vspark
@@ -12,7 +10,7 @@ Displays beautiful graphs to use in the terminal
 
 =head1 DESCRIPTION
 
-=head2 Methods
+=head2 METHODS
 
 Returns a string with a single utf8 bar according to the values
 
@@ -40,6 +38,8 @@ Example:
 
 This will receive numbers from ARGV or STDIN and print out beutiful graph based on that data.
 
+=encoding utf-8
+
 =head1 NAME
 
 Term::Vspark - Perl extension for dispaying bars in the terminal
@@ -50,19 +50,7 @@ Original repo: https://github.com/LuRsT/vspark
 
 =head1 AUTHOR
 
-Gil Gonçalves <lt>lurst@gmail.com<gt>
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2013 by Gil Gonçalves
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.16.2 or,
-at your option, any later version of Perl 5 you may have available.
-
-=head1 AUTHOR
-
-Gil Gonçalves <lurst at gmail dot com>
+Gil Gonçalves <lurst@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
@@ -70,4 +58,3 @@ This software is copyright (c) 2013 by Gil Gonçalves.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
-

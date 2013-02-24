@@ -1,7 +1,7 @@
 {
    "abstract" : "Perl extension for dispaying bars in the terminal",
    "author" : [
-      "Gil Gon\u00c3\u00a7alves <lurst at gmail dot com>"
+      "Gil Gon\u00c3\u00a7alves <lurst@cpan.org>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Dist::Zilla version 4.300030, CPAN::Meta::Converter version 2.120921",
@@ -40,6 +40,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
             "POSIX" : "0",
             "perl" : "5.006",
             "strict" : "0",
@@ -60,7 +61,7 @@
    "provides" : {
       "Term::Vspark" : {
          "file" : "lib/Term/Vspark.pm",
-         "version" : "0.08"
+         "version" : "0.07"
       }
    },
    "release_status" : "stable",
@@ -75,6 +76,6 @@
          "web" : "https://github.com/LuRsT/term-vspark"
       }
    },
-   "version" : "0.08"
+   "version" : "0.07"
 }
 

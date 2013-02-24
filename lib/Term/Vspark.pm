@@ -3,15 +3,16 @@ package Term::Vspark;
 use strict;
 use warnings;
 use POSIX;
+use Carp qw{ croak };
 
 our @ISA = qw();
 
 # VERSION
 
 sub show_single_bar {
-    my $num     = shift;
-    my $max     = shift;
-    my $columns = shift;
+    my $num     = shift || 0;
+    my $max     = shift || 0;
+    my $columns = shift || 0;
 
     my @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
     my $bar_num = ceil( $num * ( scalar(@graph) * $columns ) ) / $max;
@@ -32,6 +33,25 @@ sub show_graph {
     my $str = q{};
     for my $i ( @values ) {
         $str .= printf( "%s\n", show_single_bar($i, $max, $columns) );
+    }
+
+    return $str;
+}
+
+# Helper method
+sub show_labeled_graph {
+    my %args     = @_;
+    my $max      = $args{'max'};
+    my $columns  = $args{'columns'};
+
+    if ( ref $args{'k_values'} ne q{HASH} ) {
+        croak 'k_values is not an HASH';
+    }
+    my %k_values = %{ $args{'k_values'} };
+
+    my $str = q{};
+    for my $i ( keys %k_values ) {
+        $str .= printf( "%10s %s\n", $i, show_single_bar($k_values{$i}, $max, $columns) );
     }
 
     return $str;

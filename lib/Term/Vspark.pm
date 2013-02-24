@@ -71,7 +71,7 @@ Displays beautiful graphs to use in the terminal
 
 =head1 DESCRIPTION
 
-=head2 Methods
+=head2 METHODS
 
 Returns a string with a single utf8 bar according to the values
 
@@ -91,10 +91,23 @@ Example:
     my @list = sort { $a <=> $b } @ARGV;
     my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
 
-    Term::Vspark::show_graph(
+    print Term::Vspark::show_graph(
         'max'     => $list[-1],
         'columns' => $columns,
         'values'  => \@ARGV,
+    );
+
+Example 2:
+
+    chomp( @ARGV = <STDIN> ) unless @ARGV;
+    my %k_values = @ARGV;
+
+    my @list = sort { $a <=> $b } values %k_values;
+
+    print Term::Vspark::show_labeled_graph(
+        'max'      => $list[-1],
+        'columns'  => 10,
+        'k_values' => \%k_values,
     );
 
 This will receive numbers from ARGV or STDIN and print out beutiful graph based on that data.
@@ -103,16 +116,3 @@ This will receive numbers from ARGV or STDIN and print out beutiful graph based 
 
 Original repo: https://github.com/LuRsT/vspark
 
-=head1 AUTHOR
-
-Gil Gonçalves <lurst@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2013 by Gil Gonçalves
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.16.2 or,
-at your option, any later version of Perl 5 you may have available.
-
-=cut

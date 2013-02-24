@@ -10,7 +10,7 @@ Displays beautiful graphs to use in the terminal
 
 =head1 DESCRIPTION
 
-=head2 Methods
+=head2 METHODS
 
 Returns a string with a single utf8 bar according to the values
 
@@ -67,8 +67,8 @@ Gil Gonçalves <lurst@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2013 by Gil Gonçalves
+This software is copyright (c) 2013 by Gil Gonçalves.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.16.2 or,
-at your option, any later version of Perl 5 you may have available.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+

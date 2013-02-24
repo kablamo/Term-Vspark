@@ -32,7 +32,7 @@ sub show_graph {
 
     my $str = q{};
     for my $i ( @values ) {
-        $str .= printf( "%s\n", show_single_bar($i, $max, $columns) );
+        $str .= sprintf( "%s\n", show_single_bar($i, $max, $columns) );
     }
 
     return $str;
@@ -51,7 +51,7 @@ sub show_labeled_graph {
 
     my $str = q{};
     for my $i ( keys %k_values ) {
-        $str .= printf( "%10s %s\n", $i, show_single_bar($k_values{$i}, $max, $columns) );
+        $str .= sprintf( "%10s %s\n", $i, show_single_bar($k_values{$i}, $max, $columns) );
     }
 
     return $str;

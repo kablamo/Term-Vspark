@@ -18,7 +18,7 @@ BEGIN { use_ok('Term::Vspark') };
 #my @list = sort { $a <=> $b } @ARGV;
 #my $columns = qx{tput cols};
 #
-#Term::Vspark::show_graph(
+#print Term::Vspark::show_graph(
 #    'max'     => $list[-1],
 #    'columns' => $columns - 1,
 #    'values'  => \@ARGV,
@@ -30,7 +30,7 @@ BEGIN { use_ok('Term::Vspark') };
 #
 #my @list = sort { $a <=> $b } values %k_values;
 #
-#Term::Vspark::show_labeled_graph(
+#print Term::Vspark::show_labeled_graph(
 #    'max'      => $list[-1],
 #    'columns'  => 10,
 #    'k_values' => \%k_values,

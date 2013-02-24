@@ -30,7 +30,7 @@ Example:
     my @list = sort { $a <=> $b } @ARGV;
     my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
 
-    Term::Vspark::show_graph(
+    print Term::Vspark::show_graph(
         'max'     => $list[-1],
         'columns' => $columns,
         'values'  => \@ARGV,
@@ -43,7 +43,7 @@ Example 2:
 
     my @list = sort { $a <=> $b } values %k_values;
 
-    Term::Vspark::show_labeled_graph(
+    print Term::Vspark::show_labeled_graph(
         'max'      => $list[-1],
         'columns'  => 10,
         'k_values' => \%k_values,

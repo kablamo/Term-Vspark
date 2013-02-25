@@ -9,7 +9,7 @@ our @ISA = qw();
 
 # VERSION
 
-sub show_single_bar {
+sub show_bar {
     my $num     = shift || 0;
     my $max     = shift || 0;
     my $columns = shift || 0;
@@ -32,7 +32,7 @@ sub show_graph {
 
     my $str = q{};
     for my $i ( @values ) {
-        $str .= sprintf( "%s\n", show_single_bar($i, $max, $columns) );
+        $str .= sprintf( "%s\n", show_bar($i, $max, $columns) );
     }
 
     return $str;
@@ -51,7 +51,7 @@ sub show_labeled_graph {
 
     my $str = q{};
     for my $i ( keys %k_values ) {
-        $str .= sprintf( "%10s %s\n", $i, show_single_bar($k_values{$i}, $max, $columns) );
+        $str .= sprintf( "%10s %s\n", $i, show_bar($k_values{$i}, $max, $columns) );
     }
 
     return $str;
@@ -75,7 +75,7 @@ Displays beautiful graphs to use in the terminal
 
 Returns a string with a single utf8 bar according to the values
 
-    Term::Vspark::show_single_bar($value_for_this_bar, $max_value, $number_of_columns_to_display);
+    Term::Vspark::show_bar($value_for_this_bar, $max_value, $number_of_columns_to_display);
 
 Returns a string with a various utf8 bars according to the values
 

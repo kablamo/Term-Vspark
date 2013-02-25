@@ -52,13 +52,14 @@ sub show_labeled_graph {
     my %k_values = %{ $args{'k_values'} };
 
     my $label_width = max_label_width(keys %k_values);
+    my $bar_width   = $columns - $label_width;
+    my $str         = q{};
 
-    my $str = q{};
     for my $i ( keys %k_values ) {
         $str .= sprintf( 
             '%' . $label_width . "s %s\n", 
             $i, 
-            show_single_bar($k_values{$i}, $max, $columns),
+            show_single_bar($k_values{$i}, $max, $bar_width),
         );
     }
 

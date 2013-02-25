@@ -5,6 +5,8 @@ use warnings;
 use POSIX;
 use Carp qw{ croak };
 
+use List::Util qw/max/;
+
 our @ISA = qw();
 
 # VERSION
@@ -49,12 +51,22 @@ sub show_labeled_graph {
     }
     my %k_values = %{ $args{'k_values'} };
 
+    my $label_width = max_label_width(keys %k_values);
+
     my $str = q{};
     for my $i ( keys %k_values ) {
-        $str .= sprintf( "%10s %s\n", $i, show_single_bar($k_values{$i}, $max, $columns) );
+        $str .= sprintf( 
+            '%' . $label_width . "s %s\n", 
+            $i, 
+            show_single_bar($k_values{$i}, $max, $columns),
+        );
     }
 
     return $str;
+}
+
+sub max_label_width {
+    return 1 + max map { length $_ } @_;
 }
 
 1;

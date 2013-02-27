@@ -1,5 +1,8 @@
 use Term::Vspark qw[ show_labeled_graph ];
 
+# VERSION
+# PODNAME: show_labeled_graph
+
 chomp( @ARGV = <STDIN> ) unless @ARGV;
 my %k_values = @ARGV;
 

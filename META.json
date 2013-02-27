@@ -42,6 +42,7 @@
          "requires" : {
             "Carp" : "0",
             "POSIX" : "0",
+            "Sub::Exporter" : "0",
             "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
@@ -61,7 +62,7 @@
    "provides" : {
       "Term::Vspark" : {
          "file" : "lib/Term/Vspark.pm",
-         "version" : "0.11"
+         "version" : "0.20"
       }
    },
    "release_status" : "stable",
@@ -76,6 +77,11 @@
          "web" : "https://github.com/LuRsT/term-vspark"
       }
    },
-   "version" : "0.11"
+   "version" : "0.20",
+   "x_contributors" : [
+      "Eric Johnson <eric.git@iijo.org>",
+      "Gil Gon\u00c3\u00a7alves <lursty@gmail.com>",
+      "Gilberto Gon\u00c3\u00a7alves <lursty@gmail.com>"
+   ]
 }
 

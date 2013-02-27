@@ -5,8 +5,6 @@ use warnings;
 use POSIX;
 use Carp qw{ croak };
 
-use List::Util qw/max/;
-
 our @ISA = qw();
 
 # VERSION
@@ -28,9 +26,10 @@ sub show_bar {
 # Helper method
 sub show_graph {
     my %args    = @_;
-    my $max     = $args{'max'};
-    my $columns = $args{'columns'};
-    my @values  = @{ $args{'values'} };
+
+    my $max     = $args{'max'}         || 1;
+    my $columns = $args{'columns'}     || 1;
+    my @values  = @{ $args{'values'} } || ();
 
     my $str = q{};
     for my $i ( @values ) {
@@ -43,8 +42,9 @@ sub show_graph {
 # Helper method
 sub show_labeled_graph {
     my %args     = @_;
-    my $max      = $args{'max'};
-    my $columns  = $args{'columns'};
+
+    my $max      = $args{'max'}     || 1;
+    my $columns  = $args{'columns'} || 1;
 
     if ( ref $args{'k_values'} ne q{HASH} ) {
         croak 'k_values is not an HASH';
@@ -58,8 +58,6 @@ sub show_labeled_graph {
     my $bar = q{};
     for my $i ( keys %k_values ) {
         $bar = show_bar($k_values{$i}, $max, $bar_width);
-        print $i . "->" . $k_values{$i};
-        print "\n";
         $str .= sprintf( '%' . $label_width . "s %s\n", $i, $bar );
     }
 
@@ -67,7 +65,8 @@ sub show_labeled_graph {
 }
 
 sub max_label_width {
-    return 1 + max map { length $_ } @_;
+    my $max_width = (sort { $a <=> $b } map { length($_) } @_)[-1];
+    return $max_width + 1;
 }
 
 1;

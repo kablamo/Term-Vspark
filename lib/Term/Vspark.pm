@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use POSIX;
 use Carp qw{ croak };
+use utf8;
 
 use Sub::Exporter -setup => {
     'exports' => [ 'show_bar', 'show_graph', 'show_labeled_graph', ],

@@ -1,7 +1,12 @@
+use strict;
+use warnings;
+
 use Term::Vspark qw[ show_labeled_graph ];
 
 # VERSION
 # PODNAME: show_labeled_graph
+
+binmode STDOUT, ':encoding(UTF-8)';
 
 chomp( @ARGV = <STDIN> ) unless @ARGV;
 my %k_values = @ARGV;

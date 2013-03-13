@@ -1,10 +1,12 @@
+#!/usr/bin/env perl
+
 use strict;
 use warnings;
 
 use Term::Vspark qw{ show_graph };
 
 # VERSION
-# PODNAME: show_graph
+# PODNAME: vspark
 
 binmode STDOUT, ':encoding(UTF-8)';
 

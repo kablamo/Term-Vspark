@@ -77,7 +77,7 @@ Term::Vspark - Displays a graph in the terminal
 
 =head1 SYNOPSIS
 
-    use Term::Vspark qw/show_graph;
+    use Term::Vspark qw/show_graph/;
     binmode STDOUT, ':encoding(UTF-8)'; 
     print show_graph(
         values  => [0,1,2,3,4,5],
@@ -85,6 +85,15 @@ Term::Vspark - Displays a graph in the terminal
         max     => 7,             # optional
         columns => 80,            # optional
     );
+
+    # The output looks like this:
+    # 0 ▏
+    # 1 ██████████▉
+    # 2 █████████████████████▊
+    # 3 ████████████████████████████████▋
+    # 4 ███████████████████████████████████████████▌
+    # 5 ██████████████████████████████████████████████████████▍
+
 
 =head1 DESCRIPTION
 

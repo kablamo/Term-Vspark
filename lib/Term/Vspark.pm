@@ -73,56 +73,50 @@ __END__
 
 =head1 NAME
 
-Term::Vspark - Perl extension for dispaying bars in the terminal
+Term::Vspark - Displays a graph in the terminal
 
 =head1 SYNOPSIS
 
-Displays beautiful graphs to use in the terminal
+    use Term::Vspark qw/show_bar/;
+    binmode STDOUT, ':encoding(UTF-8)'; 
+    print show_bar(
+        values  => [0,1,2,3,4,5],
+        labels  => [0,1,2,3,4,5], # optional
+        max     => 7,             # optional
+        columns => 80,            # optional
+    );
 
 =head1 DESCRIPTION
 
-=head2 METHODS
+This module displays beautiful graphs in the terminal.  It is a companion to
+Term::Spark.  The idea is to show "sparklines" vertically.
 
-Returns a string with a single utf8 bar according to the values
+Note that because the graph is built from utf8 characters, users must setup
+UTF-8 encoding for STDOUT if they wish to print the output.
 
-    Term::Vspark::show_bar($value_for_this_bar, $max_value, $number_of_columns_to_display);
+And of course your terminal must also support unicode characters.
 
-Returns a string with a various utf8 bars according to the values
+=head1 METHODS
 
-    Term::Vspark::show_graph('values' => \@values_for_this_graph, 'max' => $max_value, 'columns' => $number_of_columns_to_display);
+=head2 show_graph( values => \@values, labels => \@labels, max => $max, columns => $columns )
 
-Example:
+show_graph returns a string.  
 
-    use Term::Vspark;
-    use Term::Size;
+The 'values' parameter should be an ArrayRef of numbers.   This is required.
 
-    chomp( @ARGV = <STDIN> ) unless @ARGV;
+The 'labels' parameter should be an ArrayRef of strings.  This is optional.
+Each label will be used with the corresponding value.
 
-    my @list = sort { $a <=> $b } @ARGV;
-    my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
+The 'max' parameter is the maximum value of the graph.  Without this parameter
+you cannot compare graphs because the scaling will change depending on the
+data.  This parameter is optional.
 
-    print Term::Vspark::show_graph(
-        'max'     => $list[-1],
-        'columns' => $columns,
-        'values'  => \@ARGV,
-    );
+The 'columns' parameter is the maximum width of the graph.
 
-Example 2:
-
-    chomp( @ARGV = <STDIN> ) unless @ARGV;
-    my %k_values = @ARGV;
-
-    my @list = sort { $a <=> $b } values %k_values;
-
-    print Term::Vspark::show_labeled_graph(
-        'max'      => $list[-1],
-        'columns'  => 10,
-        'k_values' => \%k_values,
-    );
-
-This will receive numbers from ARGV or STDIN and print out beutiful graph based on that data.
 
 =head1 SEE ALSO
 
-Original repo: https://github.com/LuRsT/vspark
+L<Term::Spark>
+
+Original repo: L<https://github.com/LuRsT/vspark>
 

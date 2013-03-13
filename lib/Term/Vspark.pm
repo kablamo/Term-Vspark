@@ -98,12 +98,11 @@ Term::Vspark - Displays a graph in the terminal
 =head1 DESCRIPTION
 
 This module displays beautiful graphs in the terminal.  It is a companion to
-Term::Spark.  The idea is to show "sparklines" vertically.
+Term::Spark but instead of displaying normal sparklines it displays "vertical"
+sparklines.
 
 Note that because the graph is built from utf8 characters, users must setup
-UTF-8 encoding for STDOUT if they wish to print the output.
-
-And of course your terminal must also support unicode characters.
+UTF-8 encoding for STDOUT if they wish to print the output.  
 
 =head1 METHODS
 

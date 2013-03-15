@@ -7,7 +7,7 @@ use Carp qw{ croak };
 use utf8;
 
 use Sub::Exporter -setup => {
-    'exports' => [ 'show_bar', 'show_graph', 'show_labeled_graph', ],
+    'exports' => [ 'show_bar', 'show_graph', ],
 };
 
 our @ISA = qw();
@@ -28,49 +28,42 @@ sub show_bar {
     return $str;
 }
 
-# Helper method
 sub show_graph {
-    my %args    = @_;
+    my %args = @_;
+
+    croak 'values is not an ArrayRef' 
+        unless ref $args{'values'} eq 'ARRAY';
+    croak 'labels is not an ArrayRef' 
+        if $args{'labels'} && ref $args{'labels'} ne 'ARRAY';
 
     my $max     = $args{'max'}     || 1;
     my $columns = $args{'columns'} || 1;
-    my $values  = $args{'values'}  || [];
+    my @labels  = @{ $args{'labels'} || [] };
+    my @values  = @{ $args{'values'} };
 
-    my $str = q{};
-    for my $i ( @{ $values } ) {
-        $str .= sprintf( "%s\n", show_bar($i, $max, $columns) );
-    }
+    croak 'the number of labels and values must be equal' 
+        if $args{'labels'} && scalar @labels != scalar @values;
 
-    return $str;
-}
-
-# Helper method
-sub show_labeled_graph {
-    my %args     = @_;
-
-    my $max      = $args{'max'}     || 1;
-    my $columns  = $args{'columns'} || 1;
-
-    if ( ref $args{'k_values'} ne q{HASH} ) {
-        croak 'k_values is not an HASH';
-    }
-    my %k_values = %{ $args{'k_values'} };
-
-    my $label_width = max_label_width( keys %k_values );
+    my $label_width = max_label_width( @labels );
     my $bar_width   = $columns - $label_width - 2;
     my $str         = q{};
 
-    my $bar = q{};
-    for my $i ( keys %k_values ) {
-        $bar = show_bar($k_values{$i}, $max, $bar_width);
-        $str .= sprintf( '%' . $label_width . "s %s\n", $i, $bar );
+    for my $value (@values) {
+        my $label = shift @labels;
+        my $bar   = show_bar($value, $max, $bar_width);
+
+        $str .= sprintf('%' . $label_width . "s ", $label) if defined $label;
+        $str .= $bar . "\n";
     }
 
     return $str;
 }
 
 sub max_label_width {
-    my $max_width = (sort { $a <=> $b } map { length($_) } @_)[-1];
+    my @labels = @_;
+    return 0 if scalar @labels == 0;
+
+    my $max_width = (sort { $a <=> $b } map { length($_) } @labels)[-1];
     return $max_width + 1;
 }
 
@@ -80,56 +73,58 @@ __END__
 
 =head1 NAME
 
-Term::Vspark - Perl extension for dispaying bars in the terminal
+Term::Vspark - Displays a graph in the terminal
 
 =head1 SYNOPSIS
 
-Displays beautiful graphs to use in the terminal
+    use Term::Vspark qw/show_graph/;
+    binmode STDOUT, ':encoding(UTF-8)'; 
+    print show_graph(
+        values  => [0,1,2,3,4,5],
+        labels  => [0,1,2,3,4,5], # optional
+        max     => 7,             # optional
+        columns => 80,            # optional
+    );
+
+    # The output looks like this:
+    # 0 ▏
+    # 1 ██████████▉
+    # 2 █████████████████████▊
+    # 3 ████████████████████████████████▋
+    # 4 ███████████████████████████████████████████▌
+    # 5 ██████████████████████████████████████████████████████▍
+
 
 =head1 DESCRIPTION
 
-=head2 METHODS
+This module displays beautiful graphs in the terminal.  It is a companion to
+Term::Spark but instead of displaying normal sparklines it displays "vertical"
+sparklines.
 
-Returns a string with a single utf8 bar according to the values
+Note that because the graph is built from utf8 characters, users must setup
+UTF-8 encoding for STDOUT if they wish to print the output.  
 
-    Term::Vspark::show_bar($value_for_this_bar, $max_value, $number_of_columns_to_display);
+=head1 METHODS
 
-Returns a string with a various utf8 bars according to the values
+=head2 show_graph( values => \@values, labels => \@labels, max => $max, columns => $columns )
 
-    Term::Vspark::show_graph('values' => \@values_for_this_graph, 'max' => $max_value, 'columns' => $number_of_columns_to_display);
+show_graph returns a string.  
 
-Example:
+The 'values' parameter should be an ArrayRef of numbers.   This is required.
 
-    use Term::Vspark;
-    use Term::Size;
+The 'labels' parameter should be an ArrayRef of strings.  This is optional.
+Each label will be used with the corresponding value.
 
-    chomp( @ARGV = <STDIN> ) unless @ARGV;
+The 'max' parameter is the maximum value of the graph.  Without this parameter
+you cannot compare graphs because the scaling will change depending on the
+data.  This parameter is optional.
 
-    my @list = sort { $a <=> $b } @ARGV;
-    my ($columns, $rows) = Term::Size::chars *STDOUT{IO};
+The 'columns' parameter is the maximum width of the graph.
 
-    print Term::Vspark::show_graph(
-        'max'     => $list[-1],
-        'columns' => $columns,
-        'values'  => \@ARGV,
-    );
-
-Example 2:
-
-    chomp( @ARGV = <STDIN> ) unless @ARGV;
-    my %k_values = @ARGV;
-
-    my @list = sort { $a <=> $b } values %k_values;
-
-    print Term::Vspark::show_labeled_graph(
-        'max'      => $list[-1],
-        'columns'  => 10,
-        'k_values' => \%k_values,
-    );
-
-This will receive numbers from ARGV or STDIN and print out beutiful graph based on that data.
 
 =head1 SEE ALSO
 
-Original repo: https://github.com/LuRsT/vspark
+L<Term::Spark>
+
+Original repo: L<https://github.com/LuRsT/vspark>
 

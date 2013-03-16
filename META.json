@@ -1,5 +1,5 @@
 {
-   "abstract" : "Perl extension for dispaying bars in the terminal",
+   "abstract" : "Displays a graph in the terminal",
    "author" : [
       "Gil Gon\u00c3\u00a7alves <lurst@cpan.org>"
    ],
@@ -63,7 +63,7 @@
    "provides" : {
       "Term::Vspark" : {
          "file" : "lib/Term/Vspark.pm",
-         "version" : "0.25"
+         "version" : "0.30"
       }
    },
    "release_status" : "stable",
@@ -78,6 +78,10 @@
          "web" : "https://github.com/LuRsT/term-vspark"
       }
    },
-   "version" : "0.25"
+   "version" : "0.30",
+   "x_contributors" : [
+      "Eric Johnson <eric.git@iijo.org>",
+      "Gil Gon\u00c3\u00a7alves <lursty@gmail.com>",
+   ]
 }
 

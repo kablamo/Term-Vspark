@@ -31,18 +31,22 @@ sub show_bar {
 sub show_graph {
     my %args = @_;
 
-    croak 'values is not an ArrayRef' 
-        unless ref $args{'values'} eq 'ARRAY';
-    croak 'labels is not an ArrayRef' 
-        if $args{'labels'} && ref $args{'labels'} ne 'ARRAY';
+    if ( ref $args{'values'} ne 'ARRAY' ) {
+        croak 'values is not an ArrayRef';
+    }
 
-    my $max     = $args{'max'}     || 1;
-    my $columns = $args{'columns'} || 1;
+    if ( $args{'labels'} && ( ref $args{'labels'} ne 'ARRAY' ) ) {
+        croak 'labels is not an ArrayRef';
+    }
+
+    my $max     = $args{'max'}       || 1;
+    my $columns = $args{'columns'}   || 1;
     my @labels  = @{ $args{'labels'} || [] };
     my @values  = @{ $args{'values'} };
 
-    croak 'the number of labels and values must be equal' 
-        if $args{'labels'} && scalar @labels != scalar @values;
+    if ( $args{'labels'} && ( scalar @labels != scalar @values ) ) {
+        croak 'the number of labels and values must be equal';
+    }
 
     my $label_width = max_label_width( @labels );
     my $bar_width   = $columns - $label_width - 2;
@@ -78,7 +82,7 @@ Term::Vspark - Displays a graph in the terminal
 =head1 SYNOPSIS
 
     use Term::Vspark qw/show_graph/;
-    binmode STDOUT, ':encoding(UTF-8)'; 
+    binmode STDOUT, ':encoding(UTF-8)';
     print show_graph(
         values  => [0,1,2,3,4,5],
         labels  => [0,1,2,3,4,5], # optional
@@ -102,13 +106,13 @@ Term::Spark but instead of displaying normal sparklines it displays "vertical"
 sparklines.
 
 Note that because the graph is built from utf8 characters, users must setup
-UTF-8 encoding for STDOUT if they wish to print the output.  
+UTF-8 encoding for STDOUT if they wish to print the output.
 
 =head1 METHODS
 
 =head2 show_graph( values => \@values, labels => \@labels, max => $max, columns => $columns )
 
-show_graph returns a string.  
+show_graph returns a string.
 
 The 'values' parameter should be an ArrayRef of numbers.   This is required.
 

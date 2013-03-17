@@ -2,3 +2,4 @@ Term-Vspark-*
 blib/
 Makefile
 MYMETA*
+.build

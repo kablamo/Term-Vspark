@@ -1,8 +1,14 @@
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
 Term::Vspark
+
+=head1 VERSION
+
+version 0.50
 
 =head1 SYNOPSIS
 
@@ -61,9 +67,42 @@ L<Term::Spark>
 
 Original repo: L<https://github.com/LuRsT/vspark>
 
+=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders metacpan
+
+=head1 SUPPORT
+
+=head2 Bugs / Feature Requests
+
+Please report any bugs or feature requests through the issue tracker
+at L<https://github.com/LuRsT/term-vspark/issues>.
+You will be notified automatically of any progress on your issue.
+
+=head2 Source Code
+
+This is open source software.  The code repository is available for
+public review and contribution under the terms of the license.
+
+L<https://github.com/LuRsT/term-vspark>
+
+  git clone git://github.com/LuRsT/term-vspark.git
+
 =head1 AUTHOR
 
 Gil Gonçalves <lurst@cpan.org>
+
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item *
+
+Eric Johnson <eric.git@iijo.org>
+
+=item *
+
+Gil Gonçalves <lursty@gmail.com>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 

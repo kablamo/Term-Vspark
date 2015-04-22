@@ -74,7 +74,7 @@ Original repo: L<https://github.com/LuRsT/vspark>
 =head2 Bugs / Feature Requests
 
 Please report any bugs or feature requests through the issue tracker
-at L<https://github.com/LuRsT/term-vspark/issues>.
+at L<https://github.com/kablamo/term-vspark/issues>.
 You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
@@ -82,9 +82,9 @@ You will be notified automatically of any progress on your issue.
 This is open source software.  The code repository is available for
 public review and contribution under the terms of the license.
 
-L<https://github.com/LuRsT/term-vspark>
+L<https://github.com/kablamo/term-vspark>
 
-  git clone git://github.com/LuRsT/term-vspark.git
+  git clone git://github.com/kablamo/term-vspark.git
 
 =head1 AUTHOR
 

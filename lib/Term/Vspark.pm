@@ -18,8 +18,16 @@ sub show_bar {
     my $num     = shift || 0;
     my $max     = shift || 0;
     my $columns = shift || 0;
+    my $custom_char = shift;
 
-    my @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
+    my @graph;
+	
+	if ($custom_char) {
+		@graph = ($custom_char);
+	} else {
+		@graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
+	}
+
     my $bar_num = ceil( $num * ( scalar(@graph) * $columns ) ) / $max;
 
     my $str = $graph[-1] x ( int($bar_num / scalar(@graph) ) );
@@ -43,6 +51,7 @@ sub show_graph {
     my $columns = $args{'columns'}   || 1;
     my @labels  = @{ $args{'labels'} || [] };
     my @values  = @{ $args{'values'} };
+    my $custom_char = $args{'custom_char'};
 
     if ( $args{'labels'} && ( scalar @labels != scalar @values ) ) {
         croak 'the number of labels and values must be equal';
@@ -54,7 +63,7 @@ sub show_graph {
 
     for my $value (@values) {
         my $label = shift @labels;
-        my $bar   = show_bar($value, $max, $bar_width);
+        my $bar   = show_bar($value, $max, $bar_width, $custom_char);
 
         $str .= sprintf('%' . $label_width . "s ", $label) if defined $label;
         $str .= $bar . "\n";

@@ -15,16 +15,16 @@ our @ISA = qw();
 our $VERSION = 0.31;
 
 sub show_bar {
-    my $num         = shift || 0;
-    my $max         = shift || 0;
-    my $columns     = shift || 0;
-    my $custom_char = shift;
+    my $num     = shift || 0;
+    my $max     = shift || 0;
+    my $columns = shift || 0;
+    my $char    = shift;
     my @graph;
     
-    if ($custom_char) {
-        @graph = ($custom_char);
+    if ($char) {
+        @graph = ($char);
     } else {
-        @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
+        @graph = qw{ █ };
     }
 
     my $bar_num = ceil( $num * ( scalar(@graph) * $columns ) ) / $max;
@@ -46,11 +46,11 @@ sub show_graph {
         croak 'labels is not an ArrayRef';
     }
 
-    my $max         = $args{'max'}       || 1;
-    my $columns     = $args{'columns'}   || 1;
-    my @labels      = @{ $args{'labels'} || [] };
-    my @values      = @{ $args{'values'} };
-    my $custom_char = $args{'custom_char'};
+    my $max     = $args{'max'}       || 1;
+    my $columns = $args{'columns'}   || 1;
+    my @labels  = @{ $args{'labels'} || [] };
+    my @values  = @{ $args{'values'} };
+    my $char    = $args{'char'};
 
     if ( $args{'labels'} && ( scalar @labels != scalar @values ) ) {
         croak 'the number of labels and values must be equal';
@@ -62,7 +62,7 @@ sub show_graph {
 
     for my $value (@values) {
         my $label = shift @labels;
-        my $bar   = show_bar($value, $max, $bar_width, $custom_char);
+        my $bar   = show_bar($value, $max, $bar_width, $char);
 
         $str .= sprintf('%' . $label_width . "s ", $label) if defined $label;
         $str .= $bar . "\n";

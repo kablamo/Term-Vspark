@@ -1,5 +1,7 @@
 package Term::Vspark;
 
+# ABSTRACT: Displays a graph in the terminal
+
 use strict;
 use warnings;
 use POSIX;
@@ -73,6 +75,7 @@ sub max_label_width {
 
 1;
 __END__
+
 =encoding utf-8
 
 =head1 NAME
@@ -125,6 +128,9 @@ data.  This parameter is optional.
 
 The 'columns' parameter is the maximum width of the graph.
 
+=head1 AUTHOR
+
+Gil Gonçalves <lurst@cpan.org>
 
 =head1 SEE ALSO
 

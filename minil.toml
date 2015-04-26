@@ -1,0 +1,2 @@
+name = "Term-Vspark"
+badges = ["travis", "coveralls"]

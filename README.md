@@ -55,5 +55,3 @@ Gil Gonçalves <lurst@cpan.org>
 # SEE ALSO
 
 [Term::Spark](https://metacpan.org/pod/Term::Spark)
-
-Original repo: [https://github.com/LuRsT/vspark](https://github.com/LuRsT/vspark)

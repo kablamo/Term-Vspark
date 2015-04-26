@@ -136,5 +136,3 @@ Gil Gonçalves <lurst@cpan.org>
 
 L<Term::Spark>
 
-Original repo: L<https://github.com/LuRsT/vspark>
-

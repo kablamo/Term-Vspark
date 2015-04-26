@@ -15,18 +15,17 @@ our @ISA = qw();
 our $VERSION = 0.31;
 
 sub show_bar {
-    my $num     = shift || 0;
-    my $max     = shift || 0;
-    my $columns = shift || 0;
+    my $num         = shift || 0;
+    my $max         = shift || 0;
+    my $columns     = shift || 0;
     my $custom_char = shift;
-
     my @graph;
-	
-	if ($custom_char) {
-		@graph = ($custom_char);
-	} else {
-		@graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
-	}
+    
+    if ($custom_char) {
+        @graph = ($custom_char);
+    } else {
+        @graph = qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █ };
+    }
 
     my $bar_num = ceil( $num * ( scalar(@graph) * $columns ) ) / $max;
 
@@ -47,10 +46,10 @@ sub show_graph {
         croak 'labels is not an ArrayRef';
     }
 
-    my $max     = $args{'max'}       || 1;
-    my $columns = $args{'columns'}   || 1;
-    my @labels  = @{ $args{'labels'} || [] };
-    my @values  = @{ $args{'values'} };
+    my $max         = $args{'max'}       || 1;
+    my $columns     = $args{'columns'}   || 1;
+    my @labels      = @{ $args{'labels'} || [] };
+    my @values      = @{ $args{'values'} };
     my $custom_char = $args{'custom_char'};
 
     if ( $args{'labels'} && ( scalar @labels != scalar @values ) ) {

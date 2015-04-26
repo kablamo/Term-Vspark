@@ -1,7 +1,7 @@
 use Test::Most;
 
 use_ok $_ for qw/
-    Term::Spark
+    Term::Vspark
 /;
 
 done_testing;

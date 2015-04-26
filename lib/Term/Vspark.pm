@@ -1,7 +1,5 @@
 package Term::Vspark;
 
-# ABSTRACT: Displays a graph in the terminal
-
 use strict;
 use warnings;
 use POSIX;
@@ -113,9 +111,9 @@ UTF-8 encoding for STDOUT if they wish to print the output.
 
 =head1 METHODS
 
-=head2 show_graph( values => \@values, labels => \@labels, max => $max, columns => $columns )
+=head2 show_graph(%params)
 
-show_graph returns a string.
+show_graph() returns a string.
 
 The 'values' parameter should be an ArrayRef of numbers.   This is required.
 

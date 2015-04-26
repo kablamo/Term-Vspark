@@ -33,9 +33,9 @@ UTF-8 encoding for STDOUT if they wish to print the output.
 
 # METHODS
 
-## show\_graph( values => \\@values, labels => \\@labels, max => $max, columns => $columns )
+## show\_graph(%params)
 
-show\_graph returns a string.
+show\_graph() returns a string.
 
 The 'values' parameter should be an ArrayRef of numbers.   This is required.
 

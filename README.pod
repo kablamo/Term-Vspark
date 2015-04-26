@@ -59,7 +59,11 @@ The 'max' parameter is the maximum value of the graph.  Without this parameter
 you cannot compare graphs because the scaling will change depending on the
 data.  This parameter is optional.
 
-The 'columns' parameter is the maximum width of the graph.
+The 'columns' parameter is the maximum width of the graph. This parameter is
+optional.
+
+The 'custom_char' parameter is the character we'll use to make the graph
+instead of the utf8 characters. This parameter is optional.
 
 =head1 SEE ALSO
 

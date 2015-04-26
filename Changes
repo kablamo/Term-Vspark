@@ -1,6 +1,8 @@
 Revision history for Term::Vspark.
 
 {{$NEXT}}
+
+0.31 2015-04-26T01:49:21Z
     - Switched to Minilla
     - Added tests
     - Updates to documentation

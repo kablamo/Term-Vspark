@@ -1,6 +1,13 @@
 Revision history for Term::Vspark.
 
 {{$NEXT}}
+    - Renamed show_graph() to vspark().  keeping show_graph() around for
+      backwards compat.
+    - Default value of 'max' param is now 80 chars or terminal width whichever
+      is smaller.
+    - Added a 'char' param in case you hate unicode
+    - Many bug fixes.
+    - Added lots of tests.
 
 0.31 2015-04-26T01:49:21Z
     - Switched to Minilla

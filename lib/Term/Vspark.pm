@@ -2,81 +2,87 @@ package Term::Vspark;
 
 use strict;
 use warnings;
-use POSIX;
 use Carp qw{ croak };
 use utf8;
 
-use Sub::Exporter -setup => {
-    'exports' => [ 'show_bar', 'show_graph', ],
-};
-
-our @ISA = qw();
+use Exporter::Shiny qw/show_bar show_graph/;
 
 our $VERSION = 0.31;
 
 sub show_bar {
-    my $num     = shift || 0;
-    my $max     = shift || 0;
-    my $columns = shift || 0;
-    my $char    = shift;
-    my @graph;
-    
-    if ($char) {
-        @graph = ($char);
-    } else {
-        @graph = qw{ █ };
+    my (%args) = @_;
+
+    my $value   = $args{value};
+    my $max     = $args{max};
+    my $columns = $args{columns};
+    my $char    = $args{char};
+
+    my @char_list = $char
+        ? ($char)
+        : (qw{ ▏ ▎ ▍ ▌ ▋ ▊ ▉ █});
+
+    my $length = $value * $columns / $max; # length of the bar
+    my $bar = '';
+
+    # build integer portion of the bar
+    my $integer = int $length;
+    $bar .= $char_list[-1] x $integer;
+
+    # build decimal portion of the bar
+    my $decimal = $length - $integer;
+    if ($decimal > 0) {
+        my $index = int scalar @char_list * $decimal;
+        $bar .= $char_list[$index];
     }
 
-    my $bar_num = ceil( $num * ( scalar(@graph) * $columns ) ) / $max;
-
-    my $str = $graph[-1] x ( int($bar_num / scalar(@graph) ) );
-    $str   .= $graph[ ceil($bar_num % (scalar(@graph) ) ) ];
-
-    return $str;
+    return $bar;
 }
 
 sub show_graph {
     my %args = @_;
 
-    if ( ref $args{'values'} ne 'ARRAY' ) {
-        croak 'values is not an ArrayRef';
-    }
+    croak 'values is not an ArrayRef'
+        if ref $args{'values'} ne 'ARRAY';
 
-    if ( $args{'labels'} && ( ref $args{'labels'} ne 'ARRAY' ) ) {
-        croak 'labels is not an ArrayRef';
-    }
+    croak 'labels is not an ArrayRef'
+        if $args{'labels'} && ref $args{'labels'} ne 'ARRAY';
 
-    my $max     = $args{'max'}       || 1;
-    my $columns = $args{'columns'}   || 1;
-    my @labels  = @{ $args{'labels'} || [] };
-    my @values  = @{ $args{'values'} };
-    my $char    = $args{'char'};
+    my $max     = $args{max}       || 1;
+    my $columns = $args{columns}   || 3;
+    my @labels  = @{ $args{labels} || [] };
+    my @values  = @{ $args{values} };
+    my $char    = $args{char};
 
-    if ( $args{'labels'} && ( scalar @labels != scalar @values ) ) {
-        croak 'the number of labels and values must be equal';
-    }
+    croak 'the number of labels and values must be equal'
+        if $args{labels} && scalar @labels != scalar @values;
 
-    my $label_width = max_label_width( @labels );
+    my $label_width = max_label_width(@labels);
     my $bar_width   = $columns - $label_width - 2;
-    my $str         = q{};
+    my $graph       = q{};
 
     for my $value (@values) {
         my $label = shift @labels;
-        my $bar   = show_bar($value, $max, $bar_width, $char);
+        my $bar   = show_bar(
+            value   => $value, 
+            max     => $max, 
+            columns => $bar_width, 
+            char    => $char,
+        );
 
-        $str .= sprintf('%' . $label_width . "s ", $label) if defined $label;
-        $str .= $bar . "\n";
+        $graph .= sprintf(' %' . $label_width . "s ", $label) if defined $label;
+        $graph .= $bar . "\n";
     }
 
-    return $str;
+    return $graph;
 }
 
 sub max_label_width {
     my @labels = @_;
+
     return 0 if scalar @labels == 0;
 
-    my $max_width = (sort { $a <=> $b } map { length($_) } @labels)[-1];
-    return $max_width + 1;
+    my @lengths = sort map { length $_ } @labels;
+    return $lengths[-1];
 }
 
 1;

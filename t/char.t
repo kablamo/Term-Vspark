@@ -4,7 +4,7 @@ use Term::Vspark qw/show_graph/;
 use utf8;
 
 my $expected = <<EOF;
- 0  
+ 0 
  1 #
  2 ##
  3 ###
@@ -13,10 +13,10 @@ my $expected = <<EOF;
 EOF
 
 my $graph = show_graph(
-    values  => [0,1,2,3,4,5],
-    labels  => [0,1,2,3,4,5],
+    values  => [0, 1, 2, 3, 4, 5],
+    labels  => [0, 1, 2, 3, 4, 5],
     max     => 5,
-    columns => 5,
+    columns => 3 + 5,
     char    => '#',
 );
 

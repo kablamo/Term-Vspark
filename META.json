@@ -1,10 +1,10 @@
 {
    "abstract" : "Displays a graph in the terminal",
    "author" : [
-      "Gil Gonçalves <lurst@cpan.org>"
+      "Eric Johnson (kablamo)"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.2.0, CPAN::Meta::Converter version 2.142060",
+   "generated_by" : "Minilla/v2.2.0, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
    ],
@@ -42,12 +42,11 @@
       },
       "runtime" : {
          "requires" : {
-            "Sub::Exporter" : "0"
+            "Exporter::Shiny" : "0"
          }
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0",
             "Test::Most" : "0"
          }
       }
@@ -64,9 +63,10 @@
          "web" : "https://github.com/kablamo/Term-Vspark"
       }
    },
-   "version" : "0.31",
+   "version" : "0.32",
    "x_contributors" : [
       "Gil Gonçalves <lursty@gmail.com>",
+      "Gil Gonçalves <lurst@cpan.org>",
       "Marcos Marado <mindboosternoori@gmail.com>",
       "Eric Johnson <github@iijo.org>",
       "Eric Johnson <eric.git@iijo.org>"

@@ -7,7 +7,7 @@ use utf8;
 
 use Exporter::Shiny qw/show_graph/;
 
-our $VERSION = 0.31;
+our $VERSION = 0.32;
 
 sub _bar {
     my (%args) = @_;

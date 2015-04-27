@@ -5,7 +5,7 @@ use warnings;
 use Carp qw{ croak };
 use utf8;
 
-use Exporter::Shiny qw/show_graph/;
+use Exporter::Shiny qw/show_graph vspark/;
 
 our $VERSION = 0.32;
 

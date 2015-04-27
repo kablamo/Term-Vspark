@@ -7,7 +7,7 @@ use utf8;
 
 use Exporter::Shiny qw/show_graph vspark/;
 
-our $VERSION = 0.33;
+our $VERSION = 0.34;
 
 sub _bar {
     my (%args) = @_;

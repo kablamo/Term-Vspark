@@ -2,9 +2,13 @@ Revision history for Term::Vspark.
 
 {{$NEXT}}
 
+0.34 2015-04-27T02:36:15Z
+    - Removed example scripts
+    - Removed README.pod
+
 0.33 2015-04-27T02:33:38Z
-    - Fix a warning when columns is undefined
-    - Fix bin/vspark to use latest changes
+    - Fixed a warning when columns is undefined
+    - Fixed bin/vspark to use latest changes
     - Forgot to export vspark() in the last release
 
 0.32 2015-04-27T02:05:03Z

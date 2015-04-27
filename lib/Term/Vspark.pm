@@ -5,11 +5,11 @@ use warnings;
 use Carp qw{ croak };
 use utf8;
 
-use Exporter::Shiny qw/show_bar show_graph/;
+use Exporter::Shiny qw/show_graph/;
 
 our $VERSION = 0.31;
 
-sub show_bar {
+sub _bar {
     my (%args) = @_;
 
     my $value   = $args{value};
@@ -42,7 +42,7 @@ sub show_bar {
     return $bar;
 }
 
-sub show_graph {
+sub vspark {
     my %args = @_;
 
     croak 'values is not an ArrayRef'
@@ -67,7 +67,7 @@ sub show_graph {
 
     for my $value (@values) {
         my $label = shift @labels;
-        my $bar   = show_bar(
+        my $bar   = _bar(
             value   => $value, 
             max     => $max, 
             columns => $bar_width, 
@@ -81,6 +81,9 @@ sub show_graph {
     return $graph;
 }
 
+# for backwards compatibility
+sub show_graph { vspark(@_) }
+
 sub _term_width {
     my $columns = shift;
     return $columns if $columns && $columns ne 'max';
@@ -92,17 +95,6 @@ sub _term_width {
     return 80    if $cols > 80;
     return $cols;
 }
-
-#sub _term_width {
-#    eval { require 'sys/ioctl.ph'; };
-#    return if $@;
-#    return unless defined &TIOCGWINSZ;
-#    open my $tty, '+<', '/dev/tty' or return;
-#    my $winsize = '';
-#    return unless ioctl( $tty, &TIOCGWINSZ, $winsize );
-#    my $col = ( unpack( 'S4', $winsize ) )[1];
-#    return $col;
-#}
 
 sub _max_value {
     my @values = @_;
@@ -131,13 +123,13 @@ Term::Vspark - Displays a graph in the terminal
 
 =head1 SYNOPSIS
 
-    use Term::Vspark qw/show_graph/;
+    use Term::Vspark qw/vspark/;
     binmode STDOUT, ':encoding(UTF-8)';
-    print show_graph(
+    print vspark(
         values  => [0,1,2,3,4,5], # required
         labels  => [0,1,2,3,4,5],
-        max     => 7,
-        columns => 80,
+        max     => 7,   # max value
+        columns => 80,  # width of the graph including labels
     );
 
     # The output looks like this:
@@ -157,7 +149,7 @@ sparklines.
 
 =head1 METHODS
 
-=head2 show_graph(%params)
+=head2 vspark(%params)
 
 show_graph() returns a string.
 

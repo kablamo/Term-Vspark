@@ -2,6 +2,11 @@ Revision history for Term::Vspark.
 
 {{$NEXT}}
 
+0.33 2015-04-27T02:33:38Z
+    - Fix a warning when columns is undefined
+    - Fix bin/vspark to use latest changes
+    - Forgot to export vspark() in the last release
+
 0.32 2015-04-27T02:05:03Z
     - Renamed show_graph() to vspark().  keeping show_graph() around for
       backwards compat.

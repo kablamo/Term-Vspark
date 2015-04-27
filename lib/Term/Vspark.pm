@@ -91,7 +91,7 @@ sub _term_width {
     require Term::ReadKey;
     my ($cols) = Term::ReadKey::GetTerminalSize(*STDOUT);
     return 80    if !$cols;
-    return $cols if  $columns eq 'max';
+    return $cols if  $columns && $columns eq 'max';
     return 80    if $cols > 80;
     return $cols;
 }

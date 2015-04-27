@@ -169,6 +169,7 @@ your terminal width or 80 characters -- whichever is smaller.  Set 'columns' to
 =head1 AUTHOR
 
 Eric Johnson (kablamo)
+
 Gil Gonçalves <lurst@cpan.org> (original author)
 
 =head1 SEE ALSO
